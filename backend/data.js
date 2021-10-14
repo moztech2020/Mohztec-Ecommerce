@@ -1,7 +1,23 @@
+import bcrypt from 'bcryptjs';
+
 const data = {
+  users: [
+    {
+      name: 'Mohztec',
+      email: 'admin@example.com',
+      password: bcrypt.hashSync('1234', 8),
+      isAdmin: true,
+    },
+    {
+      name: 'John',
+      email: 'user@example.com',
+      password: bcrypt.hashSync('1234', 8),
+      isAdmin: false,
+    },
+  ],
     products: [
       {
-        _id: '1',
+        
         name: 'Luminous inverter',
         category: 'Inverter',
         image: '/images/aut3.jpg',
@@ -13,7 +29,7 @@ const data = {
         description: 'high quality product',
       },
       {
-        _id: '2',
+      
         name: 'luminous Battery',
         category: 'Inverter Batteries',
         image: '/images/auto.jpg',
@@ -25,7 +41,7 @@ const data = {
         description: 'high quality product',
       },
       {
-        _id: '3',
+
         name: 'Mohztec Solar panel',
         category: 'Solar panel',
         image: '/images/ele1.jpg',
@@ -37,7 +53,7 @@ const data = {
         description: 'high quality product',
       },
       {
-        _id: '4',
+  
         name: 'street light',
         category: 'Street Light',
         image: '/images/elct66.jpg',
@@ -49,7 +65,7 @@ const data = {
         description: 'high quality product',
       },
       {
-        _id: '5',
+      
         name: 'double rose',
         category: 'Chandelier',
         image: '/images/aut3.jpg',
@@ -61,7 +77,7 @@ const data = {
         description: 'high quality product',
       },
       {
-        _id: '6',
+        
         name: 'Mohztec Socket',
         category: 'Socket',
         image: '/images/auto77.jpg',
