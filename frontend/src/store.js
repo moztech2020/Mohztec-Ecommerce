@@ -1,11 +1,15 @@
 import { createStore, compose, applyMiddleware,  combineReducers   } from 'redux';
 import thunk from 'redux-thunk';
-import { userSigninReducer } from './reducers/userReducers';
+import { userDetailsReducer, userRegisterReducer, userSigninReducer, userUpdateProfileReducer } from './reducers/userReducers';
 import { cartReducer } from './reducers/cartReducers';
 import {
+  productCreateReducer,
+    productDeleteReducer,
     productDetailsReducer,
     productListReducer,
+    productUpdateReducer,
   } from './reducers/productReducers';
+import { orderCreateReducer, orderDeleteReducer, orderDeliverReducer, orderDetailsReducer, orderListReducer, orderMineListReducer, orderPayReducer } from './reducers/orderReducers';
 
   const initialState = {
     userSignin: {
@@ -17,6 +21,10 @@ import {
       cartItems: localStorage.getItem('cartItems')
         ? JSON.parse(localStorage.getItem('cartItems'))
         : [],
+        shippingAddress: localStorage.getItem('shippingAddress')
+        ? JSON.parse(localStorage.getItem('shippingAddress'))
+        : {},
+        paymentMethod: 'PayPal',
     },
   };
 const reducer = combineReducers({
@@ -24,6 +32,20 @@ const reducer = combineReducers({
   productDetails: productDetailsReducer,
   cart: cartReducer,
   userSignin: userSigninReducer,
+  userRegister: userRegisterReducer,
+  orderCreate: orderCreateReducer,
+  orderDetails: orderDetailsReducer,
+  orderMineList: orderMineListReducer,
+  userDetails: userDetailsReducer,
+  userUpdateProfile: userUpdateProfileReducer,
+  productCreate: productCreateReducer,
+  productUpdate: productUpdateReducer,
+  productDelete: productDeleteReducer,
+  orderPay: orderPayReducer,
+  orderList: orderListReducer,
+  orderDelete: orderDeleteReducer,
+  orderDeliver: orderDeliverReducer,
+  
 
  
 });
