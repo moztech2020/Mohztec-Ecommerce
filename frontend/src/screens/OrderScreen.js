@@ -7,7 +7,7 @@ import MessageBox from '../components/MessageBox';
 //import Axios from 'axios';
 //import { PayPalButton} from 'react-paypal-button-v2';
 import React, { useEffect, useState } from 'react';
-import {  FlutterWaveButton } from 'flutterwave-react-v3';
+import {  FlutterWaveButton,  } from 'flutterwave-react-v3';
 
 import {
   ORDER_DELIVER_RESET,
@@ -30,6 +30,10 @@ export default function OrderScreen(props) {
   const orderId = props.match.params.id;
   const [sdkReady, setSdkReady] = useState(false);
   const orderDetails = useSelector((state) => state.orderDetails);
+
+ 
+  
+  // TODO: dispatch pay order
   
 
 
@@ -40,24 +44,7 @@ export default function OrderScreen(props) {
  
 
  
-    const config = {
-     public_key: 'FLWPUBK_TEST-a48010d102e4998535cf33f5b3f49e04-X',
-     tx_ref: Date.now(),
-     
-     currency: 'NGN',
-     payment_options: 'card,mobilemoney,ussd',
-     customer: {
-       email: userInfo.email ,
-      
-       name: userInfo.name ,
-     },
-     customizations: {
-       title: 'payment',
-       description: 'Payment for items in cart',
-       logo: 'https://st2.depositphotos.com/4403291/7418/v/450/depositphotos_74189661-stock-illustration-online-shop-log.jpg',
-     },
-   };
- 
+    
  
    
  
@@ -118,15 +105,37 @@ export default function OrderScreen(props) {
   }, [dispatch, order, orderId, sdkReady, successPay, successDeliver]);
 
   
-    const successPaymentHandler = (config, paymentResult) => {
-      
-   
-    
-    
+  const config = {
+    public_key: 'FLWPUBK_TEST-a48010d102e4998535cf33f5b3f49e04-X',
+    tx_ref: Date.now(),
   
-      dispatch(payOrder(order, paymentResult));
-    // TODO: dispatch pay order
+    currency: 'NGN',
+    payment_options: 'card,mobilemoney,ussd',
+    customer: {
+      email: userInfo.email,
+     
+      name: userInfo.name,
+    },
+    customizations: {
+      title: 'My store',
+      description: 'Payment for items in cart',
+      logo: 'https://st2.depositphotos.com/4403291/7418/v/450/depositphotos_74189661-stock-illustration-online-shop-log.jpg',
+    },
   };
+
+  const fwConfig = {
+    ...config,
+    text: 'Pay with Flutterwave!',
+    
+    callback: (response,paymentResult) => {
+       console.log(response);
+       dispatch(payOrder(order, paymentResult));
+      //closePaymentModal() // this will close the modal programmatically
+    },
+    
+    
+  };
+  
   const deliverHandler = () => {
     dispatch(deliverOrder(order._id));
   };
@@ -259,7 +268,7 @@ export default function OrderScreen(props) {
                     {loadingPay && <LoadingBox></LoadingBox>}
 
                     <FlutterWaveButton    amount={order.totalPrice}
-  onSuccess={successPaymentHandler} {...config}/>
+   {...fwConfig}/>
   
 
 
