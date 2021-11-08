@@ -15,7 +15,7 @@ export default function PaymentMethodScreen(props) {
   if (!shippingAddress.address) {
     props.history.push('/shipping');
   }
-  const [paymentMethod, setPaymentMethod] = useState('PayPal');
+  const [paymentMethod, setPaymentMethod] = useState('Flutterwave');
   const dispatch = useDispatch();
   const submitHandler = (e) => {
     e.preventDefault();
@@ -34,13 +34,13 @@ export default function PaymentMethodScreen(props) {
             <input
               type="radio"
               id="paypal"
-              value="PayPal"
+              value="Flutterwave"
               name="paymentMethod"
               required
               checked
               onChange={(e) => setPaymentMethod(e.target.value)}
             ></input>
-            <label htmlFor="paypal">PayPal</label>
+            <label htmlFor="Paypal">Flutterwave</label>
           </div>
         </div>
         <div>
@@ -48,12 +48,12 @@ export default function PaymentMethodScreen(props) {
             <input
               type="radio"
               id="stripe"
-              value="Stripe"
+              value="Paypal"
               name="paymentMethod"
               required
               onChange={(e) => setPaymentMethod(e.target.value)}
             ></input>
-            <label htmlFor="stripe">Stripe</label>
+            <label htmlFor="stripe">Paypal</label>
           </div>
         </div>
         <div>

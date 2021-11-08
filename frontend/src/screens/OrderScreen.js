@@ -96,14 +96,14 @@ export default function OrderScreen(props) {
       dispatch(detailsOrder(orderId));
     } else {
       if (!order.isPaid) {
-        if (!window.paypal) {
+        if (!window.Flutterwave) {
           addPayPalScript();
         } else {
           setSdkReady(true);
         }
       }
     }
-  }, [dispatch, order, orderId, sdkReady, successPay, successDeliver]);
+  }, [dispatch, orderId, sdkReady, successPay, successDeliver, order]);
 
   
   const config = {

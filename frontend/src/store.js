@@ -1,12 +1,22 @@
 import { createStore, compose, applyMiddleware,  combineReducers   } from 'redux';
 import thunk from 'redux-thunk';
-import { userDetailsReducer, userRegisterReducer, userSigninReducer, userUpdateProfileReducer } from './reducers/userReducers';
+import { userDetailsReducer,
+   userRegisterReducer, 
+   userSigninReducer, 
+    userListReducer, 
+    userTopSellerListReducer,
+    userDeleteReducer,
+    userUpdateReducer,
+   userUpdateProfileReducer,
+   } from './reducers/userReducers';
 import { cartReducer } from './reducers/cartReducers';
 import {
+  productCategoryListReducer,
   productCreateReducer,
     productDeleteReducer,
     productDetailsReducer,
     productListReducer,
+    productReviewCreateReducer,
     productUpdateReducer,
   } from './reducers/productReducers';
 import { orderCreateReducer, orderDeleteReducer, orderDeliverReducer, orderDetailsReducer, orderListReducer, orderMineListReducer, orderPayReducer } from './reducers/orderReducers';
@@ -24,7 +34,7 @@ import { orderCreateReducer, orderDeleteReducer, orderDeliverReducer, orderDetai
         shippingAddress: localStorage.getItem('shippingAddress')
         ? JSON.parse(localStorage.getItem('shippingAddress'))
         : {},
-        paymentMethod: 'PayPal',
+        paymentMethod: 'Flutterwave',
     },
   };
 const reducer = combineReducers({
@@ -39,13 +49,19 @@ const reducer = combineReducers({
   userDetails: userDetailsReducer,
   userUpdateProfile: userUpdateProfileReducer,
   productCreate: productCreateReducer,
+  productReviewCreate: productReviewCreateReducer,
   productUpdate: productUpdateReducer,
   productDelete: productDeleteReducer,
   orderPay: orderPayReducer,
   orderList: orderListReducer,
   orderDelete: orderDeleteReducer,
   orderDeliver: orderDeliverReducer,
+  userList: userListReducer,
   
+  userDelete: userDeleteReducer,
+  userUpdate: userUpdateReducer,
+  userTopSellersList: userTopSellerListReducer,
+  productCategoryList: productCategoryListReducer,
 
  
 });
