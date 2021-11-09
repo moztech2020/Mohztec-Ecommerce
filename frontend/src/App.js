@@ -27,6 +27,9 @@ import SearchScreen from './screens/SearchScreen';
 import { listProductCategories } from './actions/productActions';
 import LoadingBox from './components/LoadingBox';
 import MessageBox from './components/MessageBox';
+import SupportScreen from './screens/SupportScreen';
+import ChatBox from './components/ChatBox';
+import DashboardScreen from './screens/DashboardScreen';
 
 
 
@@ -140,6 +143,9 @@ function App() {
                   <li>
                     <Link to="/userlist">Users</Link>
                   </li>
+                  <li>
+                    <Link to="/support">Support</Link>
+                  </li>
                 </ul>
               </div>
             )}
@@ -228,6 +234,12 @@ function App() {
             component={OrderListScreen}
             exact
           ></AdminRoute>
+          
+          <AdminRoute
+            path="/dashboard"
+            component={DashboardScreen}
+          ></AdminRoute>
+           <AdminRoute path="/support" component={SupportScreen}></AdminRoute>
 
            <AdminRoute path="/userlist" component={UserListScreen}></AdminRoute>
            <AdminRoute
@@ -246,7 +258,10 @@ function App() {
     <Route path="/" component={HomeScreen} exact></Route>
       
     </main>
-    <footer className="row center">All right reserved</footer>
+    <footer className="row center">
+          {userInfo && !userInfo.isAdmin && <ChatBox userInfo={userInfo} />}
+          <div>All right reserved</div>{' '}
+        </footer>
   </div>
   </BrowserRouter>
   );

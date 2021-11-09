@@ -19,7 +19,7 @@ import {
     productReviewCreateReducer,
     productUpdateReducer,
   } from './reducers/productReducers';
-import { orderCreateReducer, orderDeleteReducer, orderDeliverReducer, orderDetailsReducer, orderListReducer, orderMineListReducer, orderPayReducer } from './reducers/orderReducers';
+import { orderCreateReducer, orderDeleteReducer, orderDeliverReducer, orderSummaryReducer, orderDetailsReducer, orderListReducer, orderMineListReducer, orderPayReducer } from './reducers/orderReducers';
 
   const initialState = {
     userSignin: {
@@ -50,9 +50,11 @@ const reducer = combineReducers({
   userUpdateProfile: userUpdateProfileReducer,
   productCreate: productCreateReducer,
   productReviewCreate: productReviewCreateReducer,
+  orderSummary: orderSummaryReducer,
   productUpdate: productUpdateReducer,
   productDelete: productDeleteReducer,
   orderPay: orderPayReducer,
+ 
   orderList: orderListReducer,
   orderDelete: orderDeleteReducer,
   orderDeliver: orderDeliverReducer,
